@@ -29,7 +29,7 @@ public class UsersController {
 	private UsersService usersService;
 
 	/**
-	 *用户信息
+	 * 判断用户是否登录成功
 	 * 
 	 * @param userId	用户编号
 	 * @param userPassword	用户密码
@@ -63,7 +63,7 @@ public class UsersController {
 	}
 	
 	/**
-	 *录入用户信息
+	 * 添加新的用户信息
 	 * 
 	 * @param users 保存用户的信息
 	 * @return
@@ -91,6 +91,13 @@ public class UsersController {
 		return rv;
 	}
 
+	/**
+	 * 查询满足条件的用户信息
+	 * 
+	 * @param users  查询条件
+	 * @param pageNumber  页数
+	 * @return
+	 */
 	@RequestMapping(value="/select")
 	public ResultValue select(Users users,@RequestParam("pageNumber") Integer pageNumber) {
 		
@@ -126,7 +133,13 @@ public class UsersController {
 		return rv;
 	}
 	
-	
+	/**
+	 * 修改指定用户的状态
+	 * 
+	 * @param userId  用户编号
+	 * @param userStatus  用户状态
+	 * @return
+	 */
 	@RequestMapping(value="/updateStatus")
 	public ResultValue updateStatus(@RequestParam("userId") Integer userId,@RequestParam("userStatus") Integer userStatus) {
 		
@@ -150,6 +163,12 @@ public class UsersController {
 		return rv;
 	}
 	
+	/**
+	 * 根据ID编号查询指定用户
+	 * 
+	 * @param userId  用户编号
+	 * @return
+	 */
 	@RequestMapping(value="/select/{userId}")
 	public ResultValue selectById(@PathVariable("userId") Integer userId) {
 		
@@ -179,6 +198,12 @@ public class UsersController {
 		return rv;
 	}
 	
+	/**
+	 * 修改用户的信息
+	 * 
+	 * @param users  用户信息
+	 * @return
+	 */
 	@RequestMapping(value="/update")
 	public ResultValue update(Users users) {
 		
@@ -203,6 +228,12 @@ public class UsersController {
 		
 	}
 	
+	/**
+	 * 修改用户的头像
+	 * 
+	 * @param users
+	 * @return
+	 */
 	@RequestMapping(value="/updatePhoto")
 	public ResultValue updatePhoto(Users users) {
 		
@@ -223,6 +254,12 @@ public class UsersController {
 		return rv;
 	}
 	
+	/**
+	 * 修改用户的密码
+	 * 
+	 * @param users
+	 * @return
+	 */
 	@RequestMapping(value="/updatePassword")
 	public ResultValue updatePassword(Users users) {
 		
@@ -242,7 +279,12 @@ public class UsersController {
 		rv.setMessage("用户密码修改失败！！！");
 		return rv;
 	}
-	
+	/**
+	 * 修改用户的昵称
+	 * 
+	 * @param users
+	 * @return
+	 */
 	@RequestMapping(value="/updateName")
 	public ResultValue updateName(Users users) {
 		
@@ -263,4 +305,69 @@ public class UsersController {
 		return rv;
 	}
 	
+	/**
+	 * 判断用户名出现的次数
+	 * 
+	 * @param userName  用户名
+	 * @return
+	 */
+	@RequestMapping(value="/countByUserName")
+	public ResultValue countByUserName(@RequestParam("userName") String userName) {
+		
+		ResultValue rv = new ResultValue();
+		
+		try {
+			Long countByUserName = this.usersService.countByUserName(userName);
+			if(countByUserName != null) {
+				rv.setCode(0);
+				Map<String,Object> map = new HashMap<>();
+				map.put("count", countByUserName);
+				rv.setDataMap(map);
+				return rv;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		rv.setCode(1);
+		rv.setMessage("服务器正忙，请稍后再试！！！");
+		return rv;
+	}
+	
+	/**
+	 * 普通用户登录
+	 * 
+	 * @param userName  用户名称
+	 * @param userPassword  用户密码
+	 * @param userStatus  用户状态
+	 * @param jdictionId  用户权限
+	 * @return
+	 */
+	@RequestMapping(value="/userLogin")
+	public ResultValue userLogin(@RequestParam String userName,@RequestParam String userPassword,@RequestParam Integer userStatus,@RequestParam Integer jdictionId) {
+		
+		ResultValue rv = new ResultValue();
+		
+		try {
+			Users userLogin = this.usersService.userLogin(userName, userPassword, userStatus, jdictionId);
+			if(userLogin != null) {
+				rv.setCode(0);
+				Map<String,Object> map = new HashMap<>();
+				map.put("userMessage", userLogin);
+				rv.setDataMap(map);
+				return rv;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		rv.setCode(1);
+		rv.setMessage("登录信息不正确，请重新登录！！！");
+		return rv;
+	}
+	
+		
+	
 }
+
+
+
+

@@ -86,4 +86,22 @@ public interface UsersService {
 	 * @return  成功返回大于0的整数，否则返回null
 	 */
 	public abstract Integer updateName(Users users);
+	
+	/**
+	 * 判断指定用户出现的次数
+	 * @param userName  判断出现次数的用户名
+	 * @return  成功返回java.utils,Long类型实例
+	 */
+	public abstract Long countByUserName(String userName);
+	
+	/**
+	 * 普通用户登录信息
+	 * 
+	 * @param userName  用户名称
+	 * @param userPassword  用户密码
+	 * @param userStatus  用户状态
+	 * @param jdictionId  用户权限
+	 * @return   成功返回com.springcloud.entity.Users类型的实例，否则返回null
+	 */
+	public abstract Users userLogin(String userName,String userPassword,Integer userStatus,Integer jdictionId);
 }

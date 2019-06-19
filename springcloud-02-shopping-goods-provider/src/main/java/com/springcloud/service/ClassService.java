@@ -6,7 +6,7 @@ import com.springcloud.entity.Class1;
 import com.springcloud.entity.Class2;
 
 /**
- * 用于定义一级类别与二级类别模块的方法
+ * 脫脙脫脷露篓脪氓脪禄录露脌脿卤冒脫毛露镁录露脌脿卤冒脛拢驴茅碌脛路陆路篓
  * 
  * @author jyy
  *
@@ -14,17 +14,24 @@ import com.springcloud.entity.Class2;
 public interface ClassService {
 
 	/**
-	 * 查询所有一级类别的信息
+	 * 虏茅脩炉脣霉脫脨脪禄录露脌脿卤冒碌脛脨脜脧垄
 	 * 
-	 * @return	成功返回java.util.List类型实例，否则返回null
+	 * @return	鲁脡鹿娄路碌禄脴java.util.List脌脿脨脥脢碌脌媒拢卢路帽脭貌路碌禄脴null
 	 */
 	public abstract List<Class1> selectAllClass1();
 	
 	/**
-	 * 根据一级类别查询相应二级类别的信息
+	 * 赂霉戮脻脪禄录露脌脿卤冒虏茅脩炉脧脿脫娄露镁录露脌脿卤冒碌脛脨脜脧垄
 	 * 
-	 * @param class1Id  一级类别编号
-	 * @return	成功返回java.util.List类型实例，否则返回null
+	 * @param class1Id  绫诲埆缂栧彿
+	 * @return	鎴愬姛杩斿洖java.util.List绫诲瀷瀹炰緥锛屽惁鍒欒繑鍥瀗ull
 	 */
 	public abstract List<Class2> selectClass2ByClass1Id(Integer class1Id);
+	
+	/**
+	 * 鏌ヨ鎵�鏈変簩绾х被鍒殑淇℃伅
+	 * 
+	 * @return  鎴愬姛杩斿洖java.util.List绫诲瀷瀹炰緥锛屽惁鍒欒繑鍥瀗ull
+	 */
+	public abstract List<Class2> selectAllClass2();
 }

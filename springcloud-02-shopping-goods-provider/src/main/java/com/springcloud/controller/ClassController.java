@@ -34,6 +34,7 @@ public class ClassController {
 		try {
 			//调用service中的方法，并获得查询结果
 			List<Class1> selectAllClass1 = this.classService.selectAllClass1();
+			List<Class2> selectAllClass2 = this.classService.selectAllClass2();
 			//如果成功
 			if(selectAllClass1 != null && selectAllClass1.size() > 0) {
 				//设置结果的状态为0
@@ -42,6 +43,7 @@ public class ClassController {
 				Map<String,Object> map = new HashMap<>();
 				//创建Map集保存查询结果
 				map.put("class1List", selectAllClass1);
+				map.put("class2List", selectAllClass2);
 				//将Map集合添加到ResultValue对象中
 				rv.setDataMap(map);
 				//返回ResultValue对象

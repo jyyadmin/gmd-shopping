@@ -66,5 +66,19 @@ public class GoodsServiceImpl implements GoodsService {
 		
 		return this.goodsMapper.selectGroup();
 	}
+
+
+	@Override
+	public List<Goods> selectGoodsHot() {
+		
+		return this.goodsMapper.selectGoodsHot();
+	}
+
+
+	@Override
+	public List<Goods> selectGoodsNew() {
+		
+		return this.goodsMapper.selectGoodsNew();
+	}
 	
 }

@@ -39,4 +39,10 @@ public class ClassServiceImpl implements ClassService{
 		return this.calss2Mapper.selectByClass1Id(class1Id);
 	}
 
+	@Override
+	public List<Class2> selectAllClass2() {
+		
+		return this.calss2Mapper.selectAll();
+	}
+
 }

@@ -183,4 +183,34 @@ public class GoodsController {
 		return rv;
 	}
 	
+	/**
+	 * 获得index页面初始化的商品信息（目前仅提供热卖商品和新品商品）
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value="/indexGoodsMessage")
+	public ResultValue indexGoodsMessage() {
+		
+		ResultValue rv = new ResultValue();
+		
+		try {
+			List<Goods> goodshot = this.goodsService.selectGoodsHot();
+			List<Goods> goodsnew = this.goodsService.selectGoodsNew();
+			if((goodshot != null && goodshot.size() > 0) && (goodsnew != null && goodsnew.size() > 0)) {
+				rv.setCode(0);
+				Map<String,Object> map = new HashMap<>();
+				map.put("goodsHotList", goodshot);
+				map.put("goodsNewList", goodsnew);
+				rv.setDataMap(map);
+				return rv;
+			}
+			
+		} catch (Exception e) {
+			
+		}
+		rv.setCode(1);
+		rv.setMessage("页面初始化信息获取失败！！！");
+		return rv;
+	}
+	
 }

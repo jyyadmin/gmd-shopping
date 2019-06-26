@@ -173,7 +173,7 @@
 	<!-- 查询热卖商品的前五行商品信息 -->
 	<select id="selectGoodsHot" resultMap="BaseResultMap">
 		select
-		good_id
+		good_id,
 		good_name,
 		good_prices,
 		good_discount,
@@ -194,7 +194,7 @@
 	<!-- 查询新品商品的前五行商品信息 -->
 	<select id="selectGoodsNew" resultMap="BaseResultMap">
 		select
-		good_id
+		good_id,
 		good_name,
 		good_prices,
 		good_discount,

@@ -1,11 +1,13 @@
 package com.springcloud.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -125,6 +127,62 @@ public class OrdersController {
 		}
 		
 		rv.setCode(1);
+		return rv;
+	}
+	
+	/**
+	 * 添加订单与订单明细
+	 * 
+	 * @param orders  视图层传递json字符串
+	 * @return
+	 */
+	@RequestMapping(value="/insert")
+	//@RequestBody:将视图层传递的json字符串转换为实体类
+	public ResultValue insert(@RequestBody Orders orders) {
+		
+		ResultValue rv = new ResultValue();
+		//创建订单的时间
+		orders.setOrderTime(new Date());
+		
+		try {
+			boolean b = this.ordersService.insert(orders);
+			if(b) {
+				rv.setCode(0);
+				return rv;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		rv.setCode(1);
+		rv.setMessage("创建订单失败！！！");
+		return rv;		
+	}
+	
+	/**
+	 * 查询users表中指定用户的订单信息
+	 * 
+	 * @param userId  用户编号
+	 * @return
+	 */
+	@RequestMapping(value="/selectByUserId")
+	public ResultValue selectByUserId(@RequestParam("userId") Integer userId) {
+		
+		ResultValue rv = new ResultValue();
+		
+		try {
+			List<Orders> list = this.ordersService.selectByUserId(userId);
+			if(list != null) {
+				rv.setCode(0);
+				Map<String,Object> map = new HashMap<>();
+				map.put("ordersList", list);
+				rv.setDataMap(map);
+				return rv;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		rv.setCode(1);
+		rv.setMessage("获取订单信息失败！！！");
 		return rv;
 	}
 }

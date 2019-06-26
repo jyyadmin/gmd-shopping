@@ -21,10 +21,10 @@
 	</delete>
 	<insert id="insert"
 		parameterType="com.springcloud.entity.OrderDetail">
-		insert into order_detail (order_detail_id, order_id, good_id,
+		insert into order_detail (order_id, good_id,
 		good_name, transaction_price, transaction_count
 		)
-		values (#{orderDetailId,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER},
+		values (#{orderId,jdbcType=INTEGER},
 		#{goodId,jdbcType=INTEGER},
 		#{goodName,jdbcType=VARCHAR}, #{transactionPrice,jdbcType=DOUBLE},
 		#{transactionCount,jdbcType=VARCHAR}
@@ -61,4 +61,20 @@
 		from order_detail
 		where order_id=#{orderId}
 	</select>
+	
+	<!-- 批量添加订单明细 -->
+	<insert id="insertOrderDetail"
+		parameterType="com.springcloud.entity.Orders">
+		insert into order_detail (order_id, good_id,
+		good_name, transaction_price, transaction_count
+		)
+		values 
+		<!-- collection：表示需要遍历的结合名称 -->
+		<!-- item:声明临时变量，用于保存每次循环时，集合中的元素 -->
+		<!-- separator:分隔符 -->
+		<foreach collection="orderDetailList" item="orderDetail" separator=",">
+			(#{orderId},#{orderDetail.goodId},#{orderDetail.goodName},#{orderDetail.transactionPrice},#{orderDetail.transactionCount})
+		</foreach>
+		
+	</insert>
 </mapper>

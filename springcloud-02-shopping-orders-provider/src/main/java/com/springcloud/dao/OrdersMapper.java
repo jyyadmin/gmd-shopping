@@ -37,4 +37,12 @@ public interface OrdersMapper {
      * @return  成功返回java.util.List类型的实例，否则返回null
      */
     public abstract List<Orders> selectGroup(Orders orders);
+    
+    /**
+     * 查询users表中的指定userId的订单信息
+     *  
+     * @param userId  用户编号
+     * @return   成功返回java.util.List类型的实例，否则返回null
+     */
+    public abstract List<Orders> selectByUserId(Integer userId);
 }

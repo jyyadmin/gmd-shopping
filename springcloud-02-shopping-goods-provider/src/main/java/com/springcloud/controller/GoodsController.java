@@ -206,7 +206,7 @@ public class GoodsController {
 			}
 			
 		} catch (Exception e) {
-			
+			e.printStackTrace();
 		}
 		rv.setCode(1);
 		rv.setMessage("页面初始化信息获取失败！！！");

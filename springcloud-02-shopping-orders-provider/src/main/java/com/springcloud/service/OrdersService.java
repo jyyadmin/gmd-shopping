@@ -37,4 +37,20 @@ public interface OrdersService {
 	 * @return  成功返回java.util.List类型的实例，否则返回null
 	 */
 	public abstract List<Orders> selectGroup(Orders orders);
+	
+	/**
+	 * 添加订单以及订单明细的数据
+	 * 
+	 * @param orders  订单以及订单明细的信息
+	 * @return  成功返回true,否则返回false
+	 */
+	public abstract boolean insert(Orders orders);
+	
+	/**
+	 * 查询users表中指定用户所有的订单信息
+	 * 
+	 * @param userId  用户编号
+	 * @return   成功返回java.util.List类型的实例，否则返回null
+	 */
+	public abstract List<Orders> selectByUserId(Integer userId);
 }

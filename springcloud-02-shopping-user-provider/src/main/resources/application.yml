@@ -15,7 +15,20 @@ spring:
       max-total: 10   #设置最大连接数据
       max-wait-millis: 2000   #设置最大等待时间
   jpa:                      #在控制台输出正确信息    show-sql: true
-    
+  mail:
+    #设置SMYTP服务器    host: smtp.qq.com
+    #设置发送方邮件
+    username: 1466780176@qq.com
+    #设置SMYTP服务密码（注意：不是登录密码！）
+    password: xvejodsmutghjebd
+    #设置字符集
+    default-encoding: utf-8
+    properties:       mail:
+        smtp:
+          auth: true
+          ssl:
+            enable: true    
+     
 eureka:  #启动eureka微服务url  client:    service-url:
       defaultZone: http://localhost:9000/eureka/
           

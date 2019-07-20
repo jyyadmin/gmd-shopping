@@ -141,6 +141,15 @@ public class UsersServiceImpl implements UsersService {
 	}
 
 
+	@Override
+	public Users selectById(Users users) {
+		
+		Users one = this.usersRepository.getOne(users.getUserId());
+		
+		return one;
+	}
+
+
 
 
 }

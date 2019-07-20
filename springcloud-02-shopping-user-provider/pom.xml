@@ -53,5 +53,10 @@
 			<artifactId>spring-cloud-starter-zuul</artifactId>
 			<version>1.4.6.RELEASE</version>
 		</dependency>
+		<!-- 导入邮箱依赖 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
 	</dependencies>
 </project>

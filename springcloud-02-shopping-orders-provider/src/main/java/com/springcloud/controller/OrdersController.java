@@ -148,6 +148,9 @@ public class OrdersController {
 			boolean b = this.ordersService.insert(orders);
 			if(b) {
 				rv.setCode(0);
+				Map<String,Object> map = new HashMap<>();
+				map.put("orderId", orders.getOrderId());
+				rv.setDataMap(map);
 				return rv;
 			}
 		} catch (Exception e) {
@@ -171,7 +174,7 @@ public class OrdersController {
 		
 		try {
 			List<Orders> list = this.ordersService.selectByUserId(userId);
-			if(list != null) {
+			if(list != null && list.size() > 0) {
 				rv.setCode(0);
 				Map<String,Object> map = new HashMap<>();
 				map.put("ordersList", list);

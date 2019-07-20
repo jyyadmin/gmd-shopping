@@ -128,7 +128,8 @@
 		order_time,
 		order_amount, order_status
 		from orders
-		where user_id=#{userId} 
+		where user_id=#{userId}
+		order by order_id desc
 	</select>
 	
 	<resultMap id="OrdersMap"

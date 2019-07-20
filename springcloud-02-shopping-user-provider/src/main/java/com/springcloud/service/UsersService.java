@@ -104,4 +104,12 @@ public interface UsersService {
 	 * @return   成功返回com.springcloud.entity.Users类型的实例，否则返回null
 	 */
 	public abstract Users userLogin(String userName,String userPassword,Integer userStatus,Integer jdictionId);
+	
+	/**
+	 * 查询指定编号的用户信息
+	 * 
+	 * @param users  用户信息
+	 * @return	  成功返回com.springcloud.entity.Users类型的实例，否则返回null
+	 */
+	public abstract Users selectById(Users users);
 }
